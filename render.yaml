@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: globals-server
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 8081
