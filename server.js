@@ -53,6 +53,16 @@ wss.on('connection', (ws) => {
                 console.log(`Snowball hit: ${message.targetNick}`);
                 broadcast(message, ws);
             }
+            else if (message.type === 'waypoint_place') {
+                // Ретранслируем метку всем остальным
+                console.log(`Waypoint placed by ${message.pcName} at (${message.px}, ${message.py}, ${message.pz})`);
+                broadcast(message, ws);
+            }
+            else if (message.type === 'waypoint_remove') {
+                // Ретранслируем удаление метки всем остальным
+                console.log(`Waypoint removed: ${message.id}`);
+                broadcast(message, ws);
+            }
         } catch (error) {
             console.error('Error parsing message:', error);
         }
