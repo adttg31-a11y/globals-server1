@@ -43,6 +43,16 @@ wss.on('connection', (ws) => {
                     minecraftNick: minecraftNick
                 }, ws);
             }
+            else if (message.type === 'snowball_throw') {
+                // Ретранслируем снежок всем остальным
+                console.log(`Snowball thrown by ${message.pcName}`);
+                broadcast(message, ws);
+            }
+            else if (message.type === 'snowball_hit') {
+                // Ретранслируем попадание всем
+                console.log(`Snowball hit: ${message.targetNick}`);
+                broadcast(message, ws);
+            }
         } catch (error) {
             console.error('Error parsing message:', error);
         }
